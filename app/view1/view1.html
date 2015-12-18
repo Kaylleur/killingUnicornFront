@@ -1,0 +1,41 @@
+
+<div ng-controller="View1Ctrl">
+    <div>
+        <h2>{{message}}</h2>
+        <h3>Add a new unicorn</h3>
+        <div>
+            <label>name</label>
+            <input type="text" ng-model="unicorn.name">
+        </div>
+        <div>
+            <label>gender</label></br>
+            <input type="radio" ng-model="unicorn.gender" value="F">F
+            <input type="radio" ng-model="unicorn.gender" value="M">M
+        </div>
+        <div>
+            <label>Dob</label>
+            <input type="date" ng-model="unicorn.date">
+        </div>
+        <div>
+            <label>weight</label>
+            <input type="number" ng-model="unicorn.weight">
+        </div>
+        <div>
+            <label>likes </label> <label ng-repeat="like in unicorn.likes">{{like}} </label>
+            <input type="text" ng-model="input.like">
+            <button ng-click="addLikes()">Add</button>
+        </div>
+        <div>
+            <label>vampire killed</label>
+            <input type="number" ng-model="unicorn.vampires">
+        </div>
+        <button ng-click="ok()">OK</button>
+    </div>
+
+    <div ng-repeat="un in unicorns">
+        <label>{{un._id}} </label>
+        <label>{{un.name}} </label>
+        <button ng-click="deleteUnicornClick(un._id)">Remove</button>
+        <button ng-click="getUnicorn(un._id)">Update</button>
+    </div>
+</div>
