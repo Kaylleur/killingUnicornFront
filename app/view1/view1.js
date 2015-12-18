@@ -10,17 +10,23 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope','UnicornFactory', function($scope ,UnicornFactory) {
+    $scope.resetAdd = function(){
 
-  $scope.unicorns = [];
+        $scope.unicorn.name = "";
+        $scope.unicorn.gender = "F";
+        $scope.unicorn.likes = [];
+        $scope.unicorn.date;
+        $scope.unicorn.vampires = 0;
+        $scope.input = {};
+        $scope.input.like = "";
+    };
     $scope.unicorn = {};
-    $scope.unicorn.name = "";
-    $scope.unicorn.gender = "F";
-    $scope.unicorn.likes = [];
-    $scope.unicorn.date;
-    $scope.unicorn.vampires = 0;
-    $scope.input = {};
-    $scope.input.like = "";
+    $scope.resetAdd();
+
+    $scope.unicorns = [];
+
     $scope.input.update = false;
+    $scope.action = "Add a new unicorn"
 
     $scope.message = "";
 
@@ -56,6 +62,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
     $scope.getUnicorn = function(id){
         UnicornFactory.getUnicorn(id).success(function(data){
+            $scope.action = "Edit an unicorn";
             $scope.input.update = true;
             $scope.unicorn = data;
             $scope.unicorn.date = new Date($scope.unicorn.date);
@@ -75,6 +82,8 @@ angular.module('myApp.view1', ['ngRoute'])
                 $scope.message = "A unicorn has been updated";
                 $scope.loadList();
                 $scope.input.update = false;
+                $scope.action = "Add a new unicorn"
+                $scope.resetAdd();
             }).error(function(err){
                 $scope.message = "An error has occured";
                 $scope.input.update = false;

@@ -2,7 +2,7 @@
  * Created by hdelo on 18/12/2015.
  */
 angular.module('myApp.UnicornFactory', []).factory('UnicornFactory',['$http', function($http){
-    var ipServer = 'http://10.31.1.63:8000/unicorns/';
+    var ipServer = 'http://127.0.0.1:8000/unicorns/';
     return{
 
         getAllUnicorns: function(){
